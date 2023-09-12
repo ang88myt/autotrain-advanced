@@ -1,0 +1,29 @@
+
+Prompt Engineering
+https://www.youtube.com/watch?v=LslC2nKEEGU
+
+Steps to follow: 
+---installation of packages:
+!pip install autotrain-advanced
+!pip install huggingface_hub
+
+!autotrain setup --update-torch (optional - needed for Google Colab)
+
+---- HuggingFace credentials:
+from huggingface_hub import notebook_login
+notebook_login()
+
+--- single line command!
+!autotrain llm --train 
+--project_name your_project_name 
+--model TinyPixel/Llama-2-7B-bf16-sharded 
+--data_path your_data_set 
+--use_peft 
+--use_int4
+--learning_rate 2e-4
+--train_batch_size 4
+--num_train_epochs 9
+--trainer sft > training.log &
+--model_max_length 2048
+--push_to_hub
+--repo_id ang88myt/my-llama

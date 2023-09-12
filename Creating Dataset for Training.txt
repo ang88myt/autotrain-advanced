@@ -1,0 +1,22 @@
+1. Create a dataset that contains a concept prompt pair. For each of the concepts like "A person Walking in the rain", create a detailed description that can be used by an AI image generator to create images.
+
+2. Create a data frame with concept and description. include 25 unique examples of the concept and description pairs
+
+3. Create another 25 concept, description pairs and write them to another csv file. Repeat the same process 4 times.
+
+4. Combine those csv files into a single DataFrame
+
+5. Create another column called text which follows the following structure:
+
+	test = f"###Human:\ngenerate a midjourney prompt for {Concept}\n\n###
+	Assistant:\n{Description}"
+6. autotrain llm --train 
+--project_name my-llm 
+--model meta-llama/Llama-2-7b-hf
+--data_path . --use_peft
+--use_peft
+--use_int4
+--learning_rate 2e-4
+--train_batch_size 6
+--num_train_epochs 9
+--trainer sft > training.log &
